@@ -67,7 +67,7 @@ export function Hero() {
                   </AnimatedText>
 
                   <AnimatedText delay={0.4}>
-                    <div className="flex flex-wrap items-center gap-4 mt-4">
+                    <div className="flex flex-wrap items-center gap-1 mt-4">
                       <Button render={<Link href="/contacto" />} size="lg" variant="default">
                         {slide.primaryCta}
                         <HugeiconsIcon icon={ArrowRight02Icon} />

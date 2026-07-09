@@ -23,7 +23,7 @@ const CUSTOMERS: { name: string, logo_url?: string, website_url?: string, invert
     website_url: "https://tecni-style.com"
 }, {
     name: "WEST INGENIERIA Y CONSTRUCCION S.A.C",
-    logo_url: "https://lh3.googleusercontent.com/sitesv/AA5AbUA2invtgcKP1eKWrY89w3qq-Dtu_tgxvZ2wAsQvy6Q7IWmKjsnXUo5Dnhh2dawe8a_Nn03L5aT0SolLCGFTT9QL9oP0rtHo_zsvB_vYI0J8e5jOpRkrmHLWWLFnQI3LFtPOHjcmjwbUkkX75H0QT8NCmSiFoH3SiCV09l6j9t3AIWG4WD8S8JkfjQUxmH8=w16383",
+    logo_url: "",
     website_url: "https://www.westingenieros.com/"
 }, {
     name: "INDUSTRIAL BETA S.A.",
