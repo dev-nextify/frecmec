@@ -9,6 +9,7 @@ import { AspectRatio } from "../ui/aspect-ratio";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { TickDouble01Icon, AnalyticsUpIcon, UserMultipleIcon, Clock01Icon } from "@hugeicons/core-free-icons";
+import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "../ui/item";
 
 const statIcons: Record<string, any> = {
   "Años de Experiencia": Clock01Icon,
@@ -32,35 +33,31 @@ export function About() {
               <Text variant="h2" className="text-primary mb-4">
                 Sobre Nosotros
               </Text>
-              <Text variant="lead" className="text-muted-foreground">
+              <Text variant="p" className="text-muted-foreground">
                 {ABOUT_DATA.description}
               </Text>
             </div>
 
             <Tabs defaultValue="mision" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList>
                 <TabsTrigger value="mision">Misión</TabsTrigger>
                 <TabsTrigger value="vision">Visión</TabsTrigger>
               </TabsList>
-              <TabsContent value="mision" className="mt-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-primary">Nuestra Misión</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <Text variant="p">{ABOUT_DATA.mission}</Text>
-                  </CardContent>
-                </Card>
+              <TabsContent value="mision">
+                <Item variant="solid">
+                  <ItemContent>
+                    <ItemTitle>Nuestra Misión</ItemTitle>
+                    <ItemDescription>{ABOUT_DATA.mission}</ItemDescription>
+                  </ItemContent>
+                </Item>
               </TabsContent>
-              <TabsContent value="vision" className="mt-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-accent">Nuestra Visión</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <Text variant="p">{ABOUT_DATA.vision}</Text>
-                  </CardContent>
-                </Card>
+              <TabsContent value="vision">
+                <Item variant="solid">
+                  <ItemContent>
+                    <ItemTitle>Nuestra Visión</ItemTitle>
+                    <ItemDescription>{ABOUT_DATA.vision}</ItemDescription>
+                  </ItemContent>
+                </Item>
               </TabsContent>
             </Tabs>
           </motion.div>
@@ -97,29 +94,34 @@ export function About() {
               </div>
             </div>
             {/* Flotante */}
-            <Card className="absolute -bottom-8 -left-8 bg-background shadow-2xl border-l-4 border-l-accent p-4 hidden md:block">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-accent/10 rounded-full">
+            <Item variant="solid" className="absolute -bottom-8 -left-8 max-md:hidden w-fit">
+              <ItemMedia variant="image">
+                <div className="p-2 bg-accent/10 rounded-full">
                   <HugeiconsIcon icon={TickDouble01Icon} className="text-accent w-8 h-8" />
                 </div>
-                <div>
-                  <Text variant="h4" className="mb-0">Calidad</Text>
-                  <Text variant="small" className="text-muted-foreground">Estándares Internacionales</Text>
-                </div>
-              </div>
-            </Card>
+              </ItemMedia>
+              <ItemContent>
+                <ItemTitle>Calidad</ItemTitle>
+                <ItemDescription>Estándares Internacionales</ItemDescription>
+              </ItemContent>
+            </Item>
           </motion.div>
         </div>
 
         {/* Valores */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
           {ABOUT_DATA.values.map((value, idx) => (
-            <Card key={value.title} className="hover:shadow-md transition-shadow border-t-4 border-t-primary">
-              <CardHeader>
-                <CardTitle className="text-lg">{value.title}</CardTitle>
-                <CardDescription>{value.description}</CardDescription>
-              </CardHeader>
-            </Card>
+            <Item key={value.title} variant="default">
+              <ItemMedia variant="image">
+                <div className="p-2 bg-accent/10 rounded-full">
+                  <HugeiconsIcon icon={TickDouble01Icon} className="text-accent w-8 h-8" />
+                </div>
+              </ItemMedia>
+              <ItemContent>
+                <ItemTitle>{value.title}</ItemTitle>
+                <ItemDescription>{value.description}</ItemDescription>
+              </ItemContent>
+            </Item>
           ))}
         </div>
 
@@ -128,13 +130,13 @@ export function About() {
           {ABOUT_DATA.stats.map((stat, idx) => {
             const Icon = statIcons[stat.label] || TickDouble01Icon;
             return (
-              <Card key={stat.label} className="bg-primary text-primary-foreground border-0 text-center">
-                <CardContent className="pt-8 pb-6 flex flex-col items-center gap-4">
+              <Card key={stat.label} className="bg-primary text-primary-foreground text-center">
+                <CardContent className="flex flex-col items-center gap-4">
                   <HugeiconsIcon icon={Icon} className="w-12 h-12 opacity-80" />
-                  <Text variant="h2" className="text-white drop-shadow-md">
+                  <Text variant="h2" className="text-white">
                     +{stat.value}
                   </Text>
-                  <Text variant="h4" className="font-normal opacity-90">
+                  <Text variant="h4">
                     {stat.label}
                   </Text>
                 </CardContent>
