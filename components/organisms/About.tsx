@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { AspectRatio } from "../ui/aspect-ratio";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { TickDouble01Icon, AnalyticsUpIcon, UserMultipleIcon, Clock01Icon } from "@hugeicons/core-free-icons";
+import { TickDouble01Icon, AnalyticsUpIcon, UserMultipleIcon, Clock01Icon, StarIcon } from "@hugeicons/core-free-icons";
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "../ui/item";
 
 const statIcons: Record<string, any> = {
@@ -71,7 +71,7 @@ export function About() {
           >
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-4 mt-12">
-                <Card className="overflow-hidden border-0 shadow-lg">
+                <Card className="overflow-hidden border-0 shadow-lg py-0">
                   <AspectRatio ratio={3 / 4}>
                     <img
                       src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1000&auto=format&fit=crop"
@@ -82,7 +82,7 @@ export function About() {
                 </Card>
               </div>
               <div className="flex flex-col gap-4">
-                <Card className="overflow-hidden border-0 shadow-lg">
+                <Card className="overflow-hidden border-0 shadow-lg py-0">
                   <AspectRatio ratio={3 / 4}>
                     <img
                       src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=1000&auto=format&fit=crop"
@@ -97,7 +97,7 @@ export function About() {
             <Item variant="solid" className="absolute -bottom-8 -left-8 max-md:hidden w-fit">
               <ItemMedia variant="image">
                 <div className="p-2 bg-accent/10 rounded-full">
-                  <HugeiconsIcon icon={TickDouble01Icon} className="text-accent w-8 h-8" />
+                  <HugeiconsIcon icon={StarIcon} className="text-accent w-8 h-8" />
                 </div>
               </ItemMedia>
               <ItemContent>
