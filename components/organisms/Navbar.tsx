@@ -58,7 +58,7 @@ export function Navbar() {
       )}
     >
       <Container className="flex items-center justify-between">
-        <Logo isLight={isLightText} />
+        <Logo isLight={isLightText} variant="navbar" />
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
