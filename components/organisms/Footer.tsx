@@ -76,14 +76,9 @@ export function Footer() {
           <Text variant="muted">
             &copy; {currentYear} {ABBREVIATION_NAME}. Todos los derechos reservados.
           </Text>
-          <div className="flex gap-6">
-            <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Políticas de Privacidad
-            </Link>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Términos de Servicio
-            </Link>
-          </div>
+          <Text variant="muted">
+            Desarrollado por Nextify Web
+          </Text>
         </div>
       </Container>
     </footer>
