@@ -38,16 +38,17 @@ export function About() {
               </Text>
             </div>
 
-            <Tabs defaultValue="mision" className="w-full">
+            <Tabs defaultValue="mision">
               <TabsList>
                 <TabsTrigger value="mision">Misión</TabsTrigger>
                 <TabsTrigger value="vision">Visión</TabsTrigger>
+                <TabsTrigger value="objetivo">Objetivo</TabsTrigger>
               </TabsList>
               <TabsContent value="mision">
                 <Item variant="solid">
                   <ItemContent>
                     <ItemTitle>Nuestra Misión</ItemTitle>
-                    <ItemDescription>{ABOUT_DATA.mission}</ItemDescription>
+                    <ItemDescription className="line-clamp-6">{ABOUT_DATA.mission}</ItemDescription>
                   </ItemContent>
                 </Item>
               </TabsContent>
@@ -55,7 +56,15 @@ export function About() {
                 <Item variant="solid">
                   <ItemContent>
                     <ItemTitle>Nuestra Visión</ItemTitle>
-                    <ItemDescription>{ABOUT_DATA.vision}</ItemDescription>
+                    <ItemDescription className="line-clamp-6">{ABOUT_DATA.vision}</ItemDescription>
+                  </ItemContent>
+                </Item>
+              </TabsContent>
+              <TabsContent value="objetivo">
+                <Item variant="solid">
+                  <ItemContent>
+                    <ItemTitle>Nuestro Objetivo</ItemTitle>
+                    <ItemDescription className="line-clamp-6">{ABOUT_DATA.aim}</ItemDescription>
                   </ItemContent>
                 </Item>
               </TabsContent>
@@ -119,7 +128,7 @@ export function About() {
               </ItemMedia>
               <ItemContent>
                 <ItemTitle>{value.title}</ItemTitle>
-                <ItemDescription>{value.description}</ItemDescription>
+                <ItemDescription className="line-clamp-6">{value.description}</ItemDescription>
               </ItemContent>
             </Item>
           ))}

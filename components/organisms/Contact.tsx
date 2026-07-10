@@ -1,6 +1,8 @@
 "use client";
 
-import { CONTACT_DATA, PHONE, ADRESS } from "@/constants";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import { CONTACT_DATA, PHONE, ADRESS, SERVICES } from "@/constants";
 import { SectionHeading } from "../atoms/SectionHeading";
 import { Card, CardContent } from "../ui/card";
 import { Input } from "../ui/input";
@@ -13,6 +15,67 @@ import Container from "../ui/container";
 import { Item, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle } from "../ui/item";
 import { Label } from "../ui/label";
 import { Field, FieldGroup, FieldLabel } from "../ui/field";
+
+function ContactForm() {
+  const searchParams = useSearchParams();
+  const servicioSlug = searchParams.get("servicio");
+  const servicio = SERVICES.find((s) => s.slug === servicioSlug);
+  const defaultMessage = servicio ? `Hola, quisiera cotizar el servicio: ${servicio.title}\n\nDetalles adicionales:\n` : "";
+
+  return (
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      const name = formData.get("name") || "No especificado";
+      const company = formData.get("company") || "No especificada";
+      const email = formData.get("email") || "No especificado";
+      const phoneInput = formData.get("phone") || "No especificado";
+      const message = formData.get("message") || "Sin mensaje";
+
+      // Format number for WA API (removing spaces and adding 51 prefix for Peru if missing)
+      let cleanPhone = PHONE.replace(/\D/g, "");
+      if (!cleanPhone.startsWith("51")) cleanPhone = "51" + cleanPhone;
+
+      const text = `Hola FRECMEC, me gustaría solicitar información:\n\n*Nombre:* ${name}\n*Empresa:* ${company}\n*Correo:* ${email}\n*Teléfono:* ${phoneInput}\n\n*Mensaje:*\n${message}`;
+
+      const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
+      window.open(waUrl, "_blank");
+    }} className="space-y-6">
+      <FieldGroup className="grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-6">
+        <Field>
+          <FieldLabel htmlFor="name">Nombre completo</FieldLabel>
+          <Input id="name" name="name" placeholder="Ej. Juan Pérez" required />
+        </Field>
+        <Field>
+          <Label htmlFor="company">Empresa</Label>
+          <Input id="company" name="company" placeholder="Nombre de tu empresa" />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="email">Correo corporativo</FieldLabel>
+          <Input id="email" name="email" type="email" placeholder="juan@empresa.com" />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="phone">Teléfono</FieldLabel>
+          <Input id="phone" name="phone" type="tel" placeholder="+51 999 999 999" />
+        </Field>
+        <Field className="col-span-1 lg:col-span-2">
+          <FieldLabel htmlFor="message">Mensaje o requerimiento</FieldLabel>
+          <Textarea
+            id="message"
+            name="message"
+            placeholder="Cuéntanos sobre tu proyecto o necesidad..."
+            className="min-h-32"
+            defaultValue={defaultMessage}
+            required
+          />
+        </Field>
+      </FieldGroup>
+      <Button type="submit" size="lg" className="w-full">
+        Enviar Mensaje por WhatsApp
+      </Button>
+    </form>
+  );
+}
 
 export function Contact() {
   return (
@@ -27,7 +90,7 @@ export function Contact() {
             className="flex flex-col gap-8"
           >
             <ItemGroup className="grid sm:grid-cols-2 gap-6">
-              <Item variant="solid">
+              <Item variant="solid" className="max-sm:col-span-2">
                 <ItemMedia>
                   <HugeiconsIcon icon={Phone01Icon} className="text-accent" />
                 </ItemMedia>
@@ -37,7 +100,7 @@ export function Contact() {
                 </ItemContent>
               </Item>
 
-              <Item variant="solid">
+              <Item variant="solid" className="max-sm:col-span-2">
                 <ItemMedia>
                   <HugeiconsIcon icon={Mail01Icon} className="text-accent" />
                 </ItemMedia>
@@ -89,56 +152,9 @@ export function Contact() {
           >
             <Card>
               <CardContent>
-                <form onSubmit={(e) => {
-                  e.preventDefault();
-                  const formData = new FormData(e.currentTarget);
-                  const name = formData.get("name") || "No especificado";
-                  const company = formData.get("company") || "No especificada";
-                  const email = formData.get("email") || "No especificado";
-                  const phoneInput = formData.get("phone") || "No especificado";
-                  const message = formData.get("message") || "Sin mensaje";
-
-                  // Format number for WA API (removing spaces and adding 51 prefix for Peru if missing)
-                  let cleanPhone = PHONE.replace(/\D/g, "");
-                  if (!cleanPhone.startsWith("51")) cleanPhone = "51" + cleanPhone;
-
-                  const text = `Hola FRECMEC, me gustaría solicitar información:\n\n*Nombre:* ${name}\n*Empresa:* ${company}\n*Correo:* ${email}\n*Teléfono:* ${phoneInput}\n\n*Mensaje:*\n${message}`;
-                  
-                  const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
-                  window.open(waUrl, "_blank");
-                }} className="space-y-6">
-                  <FieldGroup className="grid grid-cols-2 gap-x-2 gap-y-6">
-                    <Field>
-                      <FieldLabel htmlFor="name">Nombre completo</FieldLabel>
-                      <Input id="name" name="name" placeholder="Ej. Juan Pérez" required />
-                    </Field>
-                    <Field>
-                      <Label htmlFor="company">Empresa</Label>
-                      <Input id="company" name="company" placeholder="Nombre de tu empresa" />
-                    </Field>
-                    <Field>
-                      <FieldLabel htmlFor="email">Correo corporativo</FieldLabel>
-                      <Input id="email" name="email" type="email" placeholder="juan@empresa.com" />
-                    </Field>
-                    <Field>
-                      <FieldLabel htmlFor="phone">Teléfono</FieldLabel>
-                      <Input id="phone" name="phone" type="tel" placeholder="+51 999 999 999" />
-                    </Field>
-                    <Field className="col-span-2">
-                      <FieldLabel htmlFor="message">Mensaje o requerimiento</FieldLabel>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        placeholder="Cuéntanos sobre tu proyecto o necesidad..."
-                        className="min-h-32"
-                        required
-                      />
-                    </Field>
-                  </FieldGroup>
-                  <Button type="submit" size="lg" className="w-full">
-                    Enviar Mensaje por WhatsApp
-                  </Button>
-                </form>
+                <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center">Cargando formulario...</div>}>
+                  <ContactForm />
+                </Suspense>
               </CardContent>
             </Card>
           </motion.div>

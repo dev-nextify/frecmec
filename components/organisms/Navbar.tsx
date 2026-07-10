@@ -13,8 +13,12 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
   navigationMenuTriggerStyle,
 } from "../ui/navigation-menu";
+import { SERVICES } from "@/constants";
+import * as React from "react";
 import {
   Sheet,
   SheetContent,
@@ -25,6 +29,8 @@ import {
 } from "../ui/sheet";
 import { cn } from "@/lib/utils";
 import Container from "../ui/container";
+import { Text } from "../ui/text";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
 const NAV_LINKS = [
   { label: "Inicio", href: "/" },
@@ -64,23 +70,53 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-6">
           <NavigationMenu>
             <NavigationMenuList>
-              {NAV_LINKS.map((link) => (
-                <NavigationMenuItem key={link.label}>
-                  <NavigationMenuLink
-                    render={<Link href={link.href} />}
-                    data-active={pathname === link.href}
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      "bg-transparent",
-                      isLightText
-                        ? "text-white/90 hover:!bg-accent/10 hover:text-white focus:!bg-accent/10 focus:text-white data-[active=true]:!bg-accent/20 data-[active=true]:text-white"
-                        : "text-foreground hover:bg-accent/10 focus:bg-accent/10 data-[active=true]:bg-accent/10"
-                    )}
-                  >
-                    {link.label}
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
+              {NAV_LINKS.map((link) => {
+                if (link.label === "Servicios") {
+                  return (
+                    <NavigationMenuItem key={link.label}>
+                      <NavigationMenuTrigger
+                        className={cn(
+                          "bg-transparent",
+                          isLightText
+                            ? "text-white/90 hover:!bg-accent/10 hover:text-white focus:!bg-accent/10 focus:text-white data-[state=open]:!bg-accent/20 data-[state=open]:text-white data-[active=true]:!bg-accent/20 data-[active=true]:text-white"
+                            : "text-foreground hover:bg-accent/10 focus:bg-accent/10 data-[state=open]:bg-accent/10 data-[active=true]:bg-accent/10"
+                        )}
+                      >
+                        {link.label}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        {SERVICES.map((service) => (
+                          <ListItem
+                            key={service.title}
+                            title={service.title}
+                            href={`/servicios/${service.slug}`}
+                          >
+                            {service.description}
+                          </ListItem>
+                        ))}
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  );
+                }
+
+                return (
+                  <NavigationMenuItem key={link.label}>
+                    <NavigationMenuLink
+                      render={<Link href={link.href} />}
+                      data-active={pathname === link.href}
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "bg-transparent",
+                        isLightText
+                          ? "text-white/90 hover:!bg-accent/10 hover:text-white focus:!bg-accent/10 focus:text-white data-[active=true]:!bg-accent/20 data-[active=true]:text-white"
+                          : "text-foreground hover:bg-accent/10 focus:bg-accent/10 data-[active=true]:bg-accent/10"
+                      )}
+                    >
+                      {link.label}
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                );
+              })}
             </NavigationMenuList>
           </NavigationMenu>
 
@@ -122,17 +158,44 @@ export function Navbar() {
                   <Logo isLight={false} />
                 </SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-2 mt-6 p-4">
+              <nav className="grid gap-2 px-4">
                 {NAV_LINKS.map((link) => {
                   const isActive = pathname === link.href;
+
+                  if (link.label === "Servicios") {
+                    return (
+                      <Accordion key={link.label}>
+                        <AccordionItem value="servicios">
+                          <AccordionTrigger>
+                            {link.label}
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            {SERVICES.map((service) => (
+                              <Link href={`/servicios/${service.slug}`}>
+                                <Button
+                                  key={service.title}
+                                  variant="ghost"
+                                  className="w-full justify-start truncate"
+                                >
+                                  {service.title}
+                                </Button>
+                              </Link>
+                            ))}
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    );
+                  }
+
                   return (
-                    <Button
-                      render={<Link href={link.href} />}
-                      key={link.label}
-                      variant={isActive ? "default" : "outline"}
-                    >
-                      {link.label}
-                    </Button>
+                    <Link href={link.href}>
+                      <Button
+                        key={link.label}
+                        variant={isActive ? "default" : "outline"}
+                        className="justify-start w-full"
+                      >{link.label}
+                      </Button>
+                    </Link>
                   );
                 })}
               </nav>
@@ -159,3 +222,19 @@ export function Navbar() {
     </header>
   );
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a"> & { href: string; title: string }
+>(({ className, title, children, href, ...props }, ref) => {
+  return (
+    <NavigationMenuLink
+      render={<Link href={href} />}
+      className="grid"
+      {...props}
+    >
+      {title}
+    </NavigationMenuLink>
+  );
+});
+ListItem.displayName = "ListItem";

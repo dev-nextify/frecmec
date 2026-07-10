@@ -4,13 +4,14 @@ import { Companies } from "@/components/organisms/Companies";
 import { SectionHeading } from "@/components/atoms/SectionHeading";
 import { AnimatedText } from "@/components/atoms/AnimatedText";
 import { ServiceCard } from "@/components/molecules/ServiceCard";
-import { ABOUT_DATA, SERVICES_DATA } from "@/constants";
+import { ABOUT_DATA, SERVICES, SERVICES_DATA } from "@/constants";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon, Target01Icon, Factory01Icon } from "@hugeicons/core-free-icons";
 import Container from "@/components/ui/container";
 import { Item, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle } from "@/components/ui/item";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 export default function Home() {
   return (
@@ -29,9 +30,6 @@ export default function Home() {
                 className="mb-8"
               />
               <AnimatedText delay={0.2} className="mb-8">
-                <Text variant="p" className="mb-6">
-                  {ABOUT_DATA.mission}
-                </Text>
                 <ItemGroup>
                   <Item variant="solid" className="w-fit">
                     <ItemMedia>
@@ -80,26 +78,40 @@ export default function Home() {
         <Container>
           <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
             <SectionHeading
-              title="Nuestras Soluciones"
+              title="Nuestros Servicios"
               subtitle="Especialistas en la rama metalmecánica para impulsar tu producción."
             />
             <Button render={<Link href="/servicios" />}>
               Ver todos los servicios
             </Button>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {SERVICES_DATA.slice(0, 3).map((service, idx) => (
-              <ServiceCard
-                key={service.id}
-                title={service.title}
-                description={service.description}
-                iconName={service.iconName}
-                imageUrl={service.imageUrl}
-                delay={idx * 0.1}
-              />
-            ))}
-          </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {SERVICES.map((service, idx) => (
+                <CarouselItem key={service.id} className="md:basis-1/2 lg:basis-1/3">
+                  <Link href={`/servicios/${service.slug}`} className="block h-full">
+                    <ServiceCard
+                      title={service.title}
+                      description={service.description}
+                      iconName="Settings01Icon"
+                      imageUrl={service.images && service.images.length > 0 ? service.images[0] : "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop"}
+                      delay={0}
+                    />
+                  </Link>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-end gap-2 mt-8">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </Carousel>
         </Container>
       </section>
 

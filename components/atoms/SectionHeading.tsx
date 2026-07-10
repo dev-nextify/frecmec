@@ -21,13 +21,27 @@ export function SectionHeading({
         ? "text-right ml-auto"
         : "text-left mr-auto";
 
+  const formatTitle = (text: string) => {
+    const words = text.split(" ");
+    if (words.length <= 1) return text;
+    
+    const lastWord = words.pop();
+    const rest = words.join(" ");
+
+    return (
+      <>
+        {rest} <span className="text-primary">{lastWord}</span>
+      </>
+    );
+  };
+
   return (
     <div className={cn("max-w-2xl flex flex-col gap-3", alignmentClass, className)}>
       <Text variant="h2">
-        {title}
+        {formatTitle(title)}
       </Text>
       {subtitle && (
-        <Text variant="p">
+        <Text variant="p" className="text-muted-foreground">
           {subtitle}
         </Text>
       )}
