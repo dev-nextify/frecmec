@@ -64,7 +64,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-linear-to-t from-primary/80 to-transparent"></div>
               <Item variant="solid" className="absolute bottom-8 left-8 right-8 w-fit">
                 <ItemContent>
-                  <ItemTitle>+850</ItemTitle>
+                  <ItemTitle>+25</ItemTitle>
                   <ItemDescription>Proyectos Exitosos</ItemDescription>
                 </ItemContent>
               </Item>
