@@ -118,7 +118,7 @@ export default function Home() {
       {/* Final CTA Banner */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary z-0">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center bg-fixed opacity-10"></div>
+          <div className="absolute inset-0 bg-[url('/banners/banner1.webp')] bg-cover bg-center bg-fixed opacity-10"></div>
         </div>
         <Container className="relative text-center">
           <AnimatedText delay={0.1}>
