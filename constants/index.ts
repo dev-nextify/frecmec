@@ -54,7 +54,7 @@ export const SERVICES: { id: number, title: string, description: string, images:
     id: 3,
     title: "Servicio de Mandrinado",
     slug: "servicio-de-mandrinado",
-    description: "Mecanizado interior de precisión para ampliar o mejorar la calidad de agujeros existentes en componentes industriales de gran tamaño.",
+    description: "Mecanizado y recuperación de agujeros interiores de alta precisión.",
     images: ["/services/3/image6.jpeg", "/services/3/image7.jpeg"]
   },
   {
@@ -82,14 +82,14 @@ export const SERVICES: { id: number, title: string, description: string, images:
     id: 7,
     title: "Fabricación Metalmecánica",
     slug: "fabricacion-metalmecanica",
-    description: "Diseño y fabricación a medida de estructuras y piezas metálicas en general, cumpliendo con los requerimientos específicos de cada proyecto.",
+    description: "Diseño y fabricación de repuestos industriales de acuerdo al plano, cumpliendo con los requerimientos especificos de cada proyecto.",
     images: ["/services/7/image15.jpeg", "/services/7/image16.jpeg", "/services/7/image17.jpeg", "/services/7/image18.jpeg"]
   },
   {
     id: 8,
     title: "Procesos de Metalizado",
     slug: "procesos-de-metalizado",
-    description: "Aplicación de recubrimientos metálicos para restaurar dimensiones, proteger contra el desgaste severo y la corrosión de las piezas.",
+    description: "Aplicación de recubrimientos metálicos para restaurar dimensiones, dejando la tolerancia adecuada según TABLA.",
     images: ["/services/8/image19.jpeg", "/services/8/image20.jpeg", "/services/8/image21.jpeg"]
   },
   {
@@ -104,8 +104,8 @@ export const SERVICES: { id: number, title: string, description: string, images:
 export const HERO_SLIDES = [
   {
     id: 1,
-    title: "Especialistas en Fabricación y Recuperación Mecánica",
-    subtitle: "Brindamos servicios de alta precisión y calidad en la rama metalmecánica. Experiencia, eficiencia y seguridad para la industria peruana.",
+    title: "Especialistas en Fabricación y Recuperación de Componentes Mecánicos",
+    subtitle: "Soluciones metalmecánicas de alta precisión para la fabricación, recuperación y mantenimiento de componentes industriales, garantizando calidad, eficiencia y confiabilidad.",
     image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop",
     primaryCta: "Cotizar ahora",
     secondaryCta: "Descargar Brochure",
@@ -122,22 +122,22 @@ export const HERO_SLIDES = [
     id: 3,
     title: "Innovación y Precisión Garantizada",
     subtitle: "Cumplimos con las tolerancias más estrictas para garantizar la operatividad continua de tu empresa.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+    image: "/banners/banner1.webp",
     primaryCta: "Ver Proyectos",
     secondaryCta: "Solicitar Asesoría",
   }
 ];
 
 export const HERO_DATA = {
-  title: "Especialistas en Fabricación y Recuperación Mecánica",
-  subtitle: "Brindamos servicios de alta precisión y calidad en la rama metalmecánica. Experiencia, eficiencia y seguridad para la industria peruana.",
+  title: "Especialistas en Fabricación y Recuperación de Componentes Mecánicos",
+  subtitle: "Soluciones metalmecánicas de alta precisión para la fabricación, recuperación y mantenimiento de componentes industriales, garantizando calidad, eficiencia y confiabilidad.",
   primaryCta: "Cotizar ahora",
   secondaryCta: "Descargar Brochure",
 };
 
 export const ABOUT_DATA = {
   title: "Sobre Nosotros",
-  description: "Somos una empresa especializada, eficiente y experimentada en reparación, mejoras y fabricación de piezas industriales. Nuestro objetivo es cumplir con los más altos estándares de calidad, puntualidad y seguridad.",
+  description: "Somos una empresa especializada, eficiente y experimentada en reparación, mejoras y fabricación de componentes mecánicos. Nuestro objetivo es cumplir con los más altos estándares de calidad, puntualidad y seguridad.",
   mission: "Brindar soluciones integrales en fabricación, recuperación y reparación de componentes mecánicos, aplicando altos estándares de calidad y precisión, para garantizar la seguridad, eficiencia y satisfacción del cliente.",
   vision: "Consolidarnos como una empresa líder y referente en el sector metalmecánico, reconocida por su calidad, innovación constante, cumplimiento y compromiso con la excelencia.",
   aim: "Cumplir con los requerimientos de nuestros clientes mediante soluciones eficientes para satisfacer sus necesidades garantizando altos estándares de calidad, puntualidad, seguridad en los servicios que ofrecemos.",
@@ -149,9 +149,9 @@ export const ABOUT_DATA = {
     { title: "Innovación", description: "Mejoramos continuamente nuestros procesos metalmecánicos." },
   ],
   stats: [
-    { label: "Años de Experiencia", value: 15 },
-    { label: "Proyectos Exitosos", value: 850 },
-    { label: "Clientes Satisfechos", value: 120 },
+    { label: "Años de Experiencia", value: 3 },
+    { label: "Proyectos Exitosos", value: 25 },
+    { label: "Clientes Satisfechos", value: 9 },
   ]
 };
 

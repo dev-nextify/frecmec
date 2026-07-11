@@ -94,7 +94,7 @@ export function About() {
                 <Card className="overflow-hidden border-0 shadow-lg py-0">
                   <AspectRatio ratio={3 / 4}>
                     <img
-                      src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=1000&auto=format&fit=crop"
+                      src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRbU-aYql8NbC5F6T2PFbCZIEFLmipUAT8UZKe3zNRy2qvb1YQD"
                       alt="Torno CNC"
                       className="object-cover w-full h-full"
                     />
