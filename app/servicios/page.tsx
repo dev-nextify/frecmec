@@ -7,6 +7,17 @@ import Container from "@/components/ui/container";
 import { Text } from "@/components/ui/text";
 import { Item, ItemContent, ItemGroup, ItemMedia, ItemTitle } from "@/components/ui/item";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Servicios Generales",
+  description: "Explora nuestra amplia gama de servicios: rectificado, torneado, fresado, soldadura y recuperación de componentes mecánicos.",
+  openGraph: {
+    title: "Nuestros Servicios | FRECMEC S.A.C",
+    description: "Explora nuestra amplia gama de servicios y soluciones metalmecánicas con maquinaria de alta tecnología.",
+  },
+};
+
 export default function ServiciosPage() {
   return (
     <>

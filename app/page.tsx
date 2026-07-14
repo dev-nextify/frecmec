@@ -13,6 +13,13 @@ import Container from "@/components/ui/container";
 import { Item, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle } from "@/components/ui/item";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Inicio",
+  description: "Descubre nuestras soluciones integrales en metalmecánica: fabricación, recuperación y reparación de componentes mecánicos industriales.",
+};
+
 export default function Home() {
   return (
     <>

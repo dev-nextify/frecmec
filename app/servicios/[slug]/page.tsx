@@ -1,5 +1,6 @@
 import { SERVICES } from "@/constants";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/organisms/PageHeader";
 import Container from "@/components/ui/container";
 import { Text } from "@/components/ui/text";
@@ -14,6 +15,42 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const service = SERVICES.find((s) => s.slug === slug);
+
+  if (!service) {
+    return {
+      title: "Servicio no encontrado",
+    };
+  }
+
+  const imageUrl = service.images && service.images.length > 0
+    ? service.images[0]
+    : "https://www.frecmec.com/logo/logo-square.png";
+
+  return {
+    title: service.title,
+    description: service.description,
+    openGraph: {
+      title: `${service.title} | FRECMEC S.A.C`,
+      description: service.description,
+      images: [
+        {
+          url: imageUrl,
+          alt: service.title,
+        }
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | FRECMEC S.A.C`,
+      description: service.description,
+      images: [imageUrl],
+    }
+  };
+}
 
 export default async function ServiceDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

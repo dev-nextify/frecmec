@@ -8,6 +8,17 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { Text } from "@/components/ui/text";
 import Container from "@/components/ui/container";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nosotros",
+  description: "Conoce nuestra historia, misión y los valores que nos impulsan a ser líderes en soluciones metalmecánicas con calidad y precisión.",
+  openGraph: {
+    title: "Sobre Nosotros | FRECMEC S.A.C",
+    description: "Conoce nuestra historia, misión y los valores que nos impulsan a ser líderes en soluciones metalmecánicas con calidad y precisión.",
+  },
+};
+
 export default function NosotrosPage() {
   return (
     <>
